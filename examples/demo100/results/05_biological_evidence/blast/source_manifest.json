@@ -1,0 +1,451 @@
+{
+  "source": "UniProt + local BLASTP",
+  "database_version": "2026_03",
+  "target_source": "https://rest.uniprot.org/uniprotkb/stream?query=%28proteome%3AUP000005640%29%20AND%20%28organism_id%3A9606%29&format=fasta&includeIsoform=true&compressed=true",
+  "retrieved_at": "2026-10-19T13:26:57.325459+00:00",
+  "timezone": "UTC",
+  "target_retrieved_at": "Fri, 16 Oct 2026 11:46:32 GMT",
+  "target_sequence_count": 169651,
+  "query_sequence_count": 20,
+  "query_fasta": "examples/demo100/results/05_biological_evidence/blast/queries/hub_queries.fasta",
+  "query_sha256": "e62657241fb669a239cde6e037b8d1266cc6c6b62ca934d0e58a952e365f07e4",
+  "target_fasta": "examples/demo100/results/05_biological_evidence/blast/database/human_target.fasta",
+  "target_sha256": "bddb19a7250993b40cb48099139a0fe941462eb4f33acc2691c40039663be358",
+  "query_retrievals": [
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:45.576937+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-181020%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00006827",
+        "181020"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-181020)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00006827_search/response_1.bin",
+      "sha256": "f62c5581012ea3861dbe3937477f88bde02e39f5102c83449a3ced0a548be5a7",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:45.892952+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-174992%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00009739",
+        "174992"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-174992)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00009739_search/response_1.bin",
+      "sha256": "620a56386caf36591f97ecf9c2bc6c1ea9e83d8e38aa2a0ce7f1e6f409133ad0",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:46.166102+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-178096%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00014086",
+        "178096"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-178096)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00014086_search/response_1.bin",
+      "sha256": "0dc1820e359d711104d38c8144b77624c2cf5bfc8ccb84d0b69e61be9c7952b0",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:46.471871+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-174399%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00000220",
+        "174399"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-174399)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00000220_search/response_1.bin",
+      "sha256": "d1bbb068b394a90b10dba974b88e81d86a07a084e7cf8fb7c70b654f8c4646b3",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:46.842091+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-177621%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00019510",
+        "177621"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-177621)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00019510_search/response_1.bin",
+      "sha256": "a8b9a21c65b2f6d621e7a35485dc8c286a5933ea768590dff0920d79b49cb90b",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:47.101165+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-177226%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00017597",
+        "177226"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-177226)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00017597_search/response_1.bin",
+      "sha256": "8f4688728c425c82dbfe4e878dd1608a574994bbf52d1080ae5c3a0b603ca6ed",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:47.388140+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-180510%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00001569",
+        "180510"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-180510)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00001569_search/response_1.bin",
+      "sha256": "c8ad993a94f6b5b9cb2c824e6307f27c58320a7ef6fe46c2e66fcb92e37be3f0",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:47.614028+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-173301%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00006824",
+        "173301"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-173301)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00006824_search/response_1.bin",
+      "sha256": "b82df15f291fb0167d52f2fa9cb5074f99008675958ef2ae5b8d0413d765143f",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:47.889991+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-185508%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00018221",
+        "185508"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-185508)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00018221_search/response_1.bin",
+      "sha256": "0ac7c124e6f5026c968929feefa897ffce5d7775747543d0231408931a06431e",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:48.124612+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-181426%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00007934",
+        "181426"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-181426)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00007934_search/response_1.bin",
+      "sha256": "c3bf179a5beebe63832b0624d1cdb09c8a5b216d0c4c72e47b0f5c86a593b27d",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:48.439639+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-177816%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00011747",
+        "177816"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-177816)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00011747_search/response_1.bin",
+      "sha256": "2916050c150e624952b44790d381a7ab98ff79870ee3402c6b8ce6f8bebe2b75",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:48.691233+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-179751%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00013902",
+        "179751"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-179751)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00013902_search/response_1.bin",
+      "sha256": "1d380eb829a23c5e0ad37f02f55557fb5475a2efd7cdc26a9b0c61faf7fdf00d",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "source": "rest.uniprot.org",
+      "database_version": "2026_03",
+      "release_date": "02-September-2026",
+      "retrieved_at": "2026-10-19T13:26:48.937441+00:00",
+      "timezone": "UTC",
+      "endpoint": "https://rest.uniprot.org/uniprotkb/search?query=%28organism_id%3A6239%29+AND+%28xref%3Ageneid-177102%29&format=json&size=500",
+      "query_method": "GET",
+      "identifiers": [
+        "WBGene00018330",
+        "177102"
+      ],
+      "parameters": {
+        "query": "(organism_id:6239) AND (xref:geneid-177102)",
+        "format": "json",
+        "size": 500
+      },
+      "status": "SUCCESS",
+      "http_status": 200,
+      "attempts": 1,
+      "raw_response": "examples/demo100/results/05_biological_evidence/blast/raw/WBGene00018330_search/response_1.bin",
+      "sha256": "65c90344d3fd95e16592b68b9df375a83c7824b99e8c7702384f3b0ee16c5096",
+      "software": {
+        "requests": "2.34.2"
+      },
+      "warnings": [],
+      "errors": []
+    }
+  ],
+  "software": {
+    "blastp": "blastp: 2.17.0+\n Package: blast 2.17.0, build Jul  1 2025 12:49:33\n",
+    "makeblastdb": "makeblastdb: 2.17.0+\n Package: blast 2.17.0, build Jul  1 2025 12:49:33\n"
+  },
+  "commands": [
+    [
+      "makeblastdb",
+      "-in",
+      "examples/demo100/results/05_biological_evidence/blast/database/human_target.fasta",
+      "-dbtype",
+      "prot",
+      "-parse_seqids",
+      "-out",
+      "examples/demo100/results/05_biological_evidence/blast/database/human"
+    ],
+    [
+      "blastp",
+      "-task",
+      "blastp",
+      "-query",
+      "examples/demo100/results/05_biological_evidence/blast/queries/hub_queries.fasta",
+      "-db",
+      "examples/demo100/results/05_biological_evidence/blast/database/human",
+      "-evalue",
+      "1e-05",
+      "-matrix",
+      "BLOSUM62",
+      "-gapopen",
+      "11",
+      "-gapextend",
+      "1",
+      "-word_size",
+      "3",
+      "-comp_based_stats",
+      "2",
+      "-seg",
+      "yes",
+      "-soft_masking",
+      "false",
+      "-num_threads",
+      "4",
+      "-max_target_seqs",
+      "169651",
+      "-outfmt",
+      "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen qcovs qcovhsp stitle",
+      "-out",
+      "examples/demo100/results/05_biological_evidence/blast/raw/blast.tsv"
+    ]
+  ],
+  "isoform_policy": "all_available_named",
+  "parameters": {
+    "target_gzip": "LOCAL_PROJECT/data/external/human_20261016/human_target.fasta.gz",
+    "target_headers": "LOCAL_PROJECT/data/external/human_20261016/target.headers",
+    "target_source": "https://rest.uniprot.org/uniprotkb/stream?query=%28proteome%3AUP000005640%29%20AND%20%28organism_id%3A9606%29&format=fasta&includeIsoform=true&compressed=true",
+    "evalue": 1e-05,
+    "matrix": "BLOSUM62",
+    "gapopen": 11,
+    "gapextend": 1,
+    "word_size": 3,
+    "comp_based_stats": 2,
+    "seg": "yes",
+    "soft_masking": "false",
+    "threads": 4,
+    "isoforms": "all_available_named",
+    "reciprocal": false
+  },
+  "warnings": [],
+  "status": "SUCCESS",
+  "finished_at": "2026-10-19T13:27:14.545866+00:00",
+  "hit_rows": 1522,
+  "raw_sha256": "205303b054a562f5f44e8b8e2fc81d77ec2b588414b1c2273d526ba09a1b32d3"
+}

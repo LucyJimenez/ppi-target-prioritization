@@ -1,0 +1,10 @@
+community	nodes	mapped_genes	unmapped_genes	testable	terms_tested	significant_terms_all_aspects	significant_BP_terms	top3_GO_IDs	top3_terms
+1	71	69	2	True	808	10	5	GO:0006120;GO:1902600;GO:0015986	mitochondrial electron transport, NADH to ubiquinone; proton transmembrane transport; proton motive force-driven ATP synthesis
+2	51	49	2	True	808	7	3	GO:0006357;GO:0010468;GO:0006355	regulation of transcription by RNA polymerase II; regulation of gene expression; regulation of DNA-templated transcription
+3	34	30	4	True	808	2	0		
+4	27	26	1	True	808	8	3	GO:0006355;GO:0045944;GO:0030154	regulation of DNA-templated transcription; positive regulation of transcription by RNA polymerase II; cell differentiation
+5	19	17	2	True	808	0	0		
+6	18	15	3	True	808	0	0		
+7	11	9	2	True	808	6	0		
+8	10	8	2	True	808	0	0		
+9	8	7	1	True	808	0	0		

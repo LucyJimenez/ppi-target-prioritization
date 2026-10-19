@@ -1,0 +1,4 @@
+source	status	records	reason	database_version	retrieved_at	started_at	finished_at	error_type	http_status	attempts
+wormbase	SUCCESS	380	Archived snapshot: 13/13 hubs covered; absent snapshot files are missing evidence	live REST snapshot; numbered release unknown	2026-08-05T09:44:02.646126+00:00	2026-10-19T13:26:36.542269+00:00	2026-10-19T13:26:36.559767+00:00			0
+bgee	SUCCESS	582		15.2 (current download SHA256 equals pinned 15.2)	2026-10-16T12:40:28.212781+02:00	2026-10-19T13:26:36.559790+00:00	2026-10-19T13:26:44.776334+00:00			0
+blast	SUCCESS	1522		2026_03	2026-10-19T13:26:57.325459+00:00	2026-10-19T13:26:44.776524+00:00	2026-10-19T13:27:14.567858+00:00			0

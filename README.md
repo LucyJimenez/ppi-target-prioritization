@@ -6,7 +6,7 @@ The endpoint is **candidate target profiles**, not drug discovery, demonstrated 
 
 ## Code public, data local
 
-Pipeline code, documentation, example configuration, synthetic tests and the explicitly selected five-gene historical example below are intended for GitHub. Real inputs, database snapshots, FASTA, BLAST databases, results, figures, HTML reports and local configuration are excluded by `.gitignore`. No remote publishing command is part of this workflow. Do not use `git add -f` on excluded study files.
+Pipeline code, documentation, example configuration, synthetic tests and the explicitly authorized 100-input demonstration below are intended for GitHub. Real inputs, database snapshots, FASTA, BLAST databases, results, figures, HTML reports and local configuration are excluded by `.gitignore`. No remote publishing command is part of this workflow. Do not use `git add -f` on excluded study files.
 
 ## Six stages
 
@@ -117,52 +117,37 @@ Each source is `SUCCESS`, `PARTIAL`, `FAILED` or `NOT_RUN`, with a reason. HTTP 
 
 Each run writes `results/runs/RUN_ID/`, with six named stage directories, configuration and provenance in `run_manifest.json`, and source-code snapshots. `results/01_interactions/` through `results/06_target_profiles/` are convenience links to the latest corresponding outputs; immutable run directories are authoritative.
 
-Stage 06 creates `candidate_target_profiles.tsv`, `evidence_completeness.tsv`, `analysis_summary.json`, figures in PDF/SVG/400-dpi PNG, figure manifests and `analysis_report.html`. The English HTML is self-contained for figures and works offline; linked TSV files remain alongside it. Full study products remain local; the only real-data documentation exception is the five-gene historical excerpt below.
+Stage 06 creates `candidate_target_profiles.tsv`, `evidence_completeness.tsv`, `analysis_summary.json`, figures in PDF/SVG/400-dpi PNG, figure manifests and `analysis_report.html`. The English HTML is self-contained for figures and works offline; linked TSV files remain alongside it. Full study products remain local; the real-data documentation exception is the separately packaged 100-input demonstration below.
 
-## Small historical input/output example
+## End-to-end example: 100 historical input records
 
-This five-gene excerpt comes from the earlier `PPI_network_analysis` project. It illustrates input traceability and result presentation, including an available **WormBase REST snapshot retrieved on 2026-08-05** (release recorded as “live REST snapshot”; no numbered release established). It is not a new run of this pipeline and does not resolve the current run's pending WormBase integration. Only this explicitly selected excerpt is distributed; neither the full 165-row historical input nor the current study dataset is included.
+**This example contains a sample of a dataset that will be published in full at a later date.** It uses 100 of the earlier 165 input records (76 unique WBGene IDs), not the current 429-WBGene study. All six stages were recalculated for this sample.
 
-Selection: the first five entries in the historical input mapping with both archived physical-network metrics and observed WormBase phenotype records. This is a demonstration subset, not a random or representative sample.
+WormBase evidence comes from a **snapshot retrieved on 5 August 2026** (09:44:02 UTC; numbered database release unknown), covering all 13 demonstration hubs. Observed and not-observed phenotypes remain separate. Other databases retain their own documented versions and dates.
 
-### Example input
+| Output | Result |
+|---|---:|
+| Input records / unique WBGene IDs | 100 / 76 |
+| LCC nodes / edges | 249 / 287 |
+| Communities / robust hubs | 9 / 13 |
+| Significant community–GO BP associations | 11 |
+| Hubs covered by archived WormBase / Bgee | 13 / 13 |
 
-Copy this tab-separated block into a local input file with `input.header: true`. The OG values are recovered orthogroup identifiers, not generated row labels.
+![Example LCC with communities and robust hubs](examples/demo100/results/06_target_profiles/figures/figure_A_network.png)
 
-```tsv
-WBGene	UniProt	Orthogroup
-WBGene00014086	Q23597	OG0004167
-WBGene00011831	Q22562	OG0004728
-WBGene00007934	G5ECE7	OG0004924
-WBGene00011273	Q22021	OG0005398
-WBGene00009739	O45525	OG0005773
+![Example community sizes and GO context](examples/demo100/results/06_target_profiles/figures/figure_B_community_GO.png)
+
+[Explore the complete demonstration](examples/demo100/README.md): input sample, sensitivity figure, phenotype evidence, integrated profiles, downloadable English HTML report, source provenance and reproduction commands. This is a freshly computed sample network, not a cropped view of the old full network.
+
+```bash
+# Offline: regenerate figures and HTML from the included demonstration results
+python examples/demo100/render_saved_results.py
+
+# New full analysis: acquire current sources, retaining the archived WormBase snapshot
+python examples/demo100/run_demo.py --refresh
 ```
 
-### Example network output
-
-Metrics below belong to the archived **physical-only** network, not the old project's mixed-interaction analysis. Degrees and community labels were calculated in that larger historical network, **not in a network of these five genes**. A new run using only this subset will not reproduce these numbers. Historical gene symbols and community numbering are preserved.
-
-| WBGene | UniProt | Historical symbol | Degree | Historical community |
-|---|---|---|---:|---:|
-| WBGene00014086 | Q23597 | ZK809.3 | 37 | 1 |
-| WBGene00011831 | Q22562 | T19B10.2 | 11 | 7 |
-| WBGene00007934 | G5ECE7 | C34E7.4 | 8 | 6 |
-| WBGene00011273 | Q22021 | R53.4 | 13 | 4 |
-| WBGene00009739 | O45525 | F45H10.2 | 52 | 1 |
-
-### Example WormBase evidence output
-
-One observed annotation is shown per gene. For a compact illustration, embryonic-lethal records are selected first, then other lethal records, then phenotype ID and evidence identifier order. This selection is not a complete phenotype summary or an essentiality classification. Missing lethal records must never be interpreted as non-essentiality.
-
-| WBGene | Observed phenotype | Phenotype ID | Evidence identifiers | Reference |
-|---|---|---|---|---|
-| WBGene00014086 | embryonic lethal | WBPhenotype:0000050 | WBPaper00005654;WBRNAi00009497 | WBPaper00005654 |
-| WBGene00011831 | larval lethal | WBPhenotype:0000054 | WBPaper00029258;WBRNAi00074756 | WBPaper00029258 |
-| WBGene00007934 | small | WBPhenotype:0000229 | WBPaper00006395;WBRNAi00024735 | WBPaper00006395 |
-| WBGene00011273 | embryonic lethal | WBPhenotype:0000050 | WBPaper00004540;WBRNAi00000198 | WBPaper00004540 |
-| WBGene00009739 | slow growth | WBPhenotype:0000031 | WBPaper00005654;WBRNAi00008806 | WBPaper00005654 |
-
-All five displayed records are marked observed and carry RNAi/paper evidence in the archive. Archived evidence is shown for documentation only; it is not silently imported into current candidate profiles. [Example provenance](docs/historical_example_provenance.md) records the source files and checksums.
+The remaining historical inputs and the 429-study data/results remain local. The complete study dataset will be published later. Missing phenotype evidence is never interpreted as non-essentiality.
 
 ## Validation
 

@@ -7,6 +7,9 @@ from .provenance import write_json,now
 
 
 def wormbase(root,config,run,hubs,out):
+    if config['wormbase'].get('snapshot'):
+        from .wormbase import from_snapshot
+        return from_snapshot(root,config['wormbase']['snapshot'],hubs,out)
     if config['wormbase'].get('deferred',True) and config.get('_source')!='wormbase':
         meta={'source':'WormBase','status':'NOT_RUN','reason':'Deferred by user after HTTP 403; no current WormBase evidence generated','retrieved_at':None,'identifiers':hubs.WBGene.tolist()}
         write_json(out/'source_manifest.json',meta)

@@ -59,7 +59,7 @@ def generate(root,config,run,out):
     wrapped={int(r.community):[(textwrap.fill(str(t.GO_term),59),float(t.FDR)) for t in topgo[topgo.community==r.community].itertuples()] for r in go.itertuples()}
     heights=[max(.38,.13*sum(label.count('\n')+1 for label,_ in wrapped[int(c)])+.14) for c in go.community]
     y=np.cumsum(heights)-np.array(heights)/2;total=sum(heights)
-    fig=plt.figure(figsize=(width,total+.9));gs=fig.add_gridspec(1,3,width_ratios=[1.05,.8,4.1],left=.075,right=.98,top=.91,bottom=.12,wspace=.18)
+    fig=plt.figure(figsize=(width,total+.9));gs=fig.add_gridspec(1,3,width_ratios=[1.05,.8,4.1],left=.075,right=.98,top=.91,bottom=.85/(total+.9),wspace=.18)
     ax1,ax2,ax3=[fig.add_subplot(gs[0,i]) for i in range(3)]
     ax1.barh(y,go.nodes,color=[colors[c] for c in go.community],height=np.minimum(heights,.44)*.75);ax1.set_yticks(y,[f'C{c}' for c in go.community]);ax1.set_xlabel('Nodes')
     ax2.barh(y,go.significant_BP_terms,color='#237e87',height=np.minimum(heights,.44)*.75);ax2.set_yticks([]);ax2.set_xlabel('GO BP terms')
@@ -77,7 +77,7 @@ def generate(root,config,run,out):
                 at+=.13*(label.count('\n')+1)
     fig.suptitle('B  Community size and functional context',x=.075,ha='left',fontsize=11,fontweight='bold')
     ax3.set_title('Top three BP terms (FDR, p, GO ID order)',fontsize=8,loc='left')
-    cax=fig.add_axes([.66,.055,.25,.013]);fig.colorbar(matplotlib.cm.ScalarMappable(norm=norm,cmap=term_cmap),cax=cax,orientation='horizontal',label='Term color: -log10(FDR)')
+    cax=fig.add_axes([.66,.45/(total+.9),.25,.06/(total+.9)]);fig.colorbar(matplotlib.cm.ScalarMappable(norm=norm,cmap=term_cmap),cax=cax,orientation='horizontal',label='Term color: -log10(FDR)')
     save(fig,'figure_B_community_GO','Community node counts, significant Biological Process terms (within-community BH FDR <0.05 across all tested aspects), and up to three ranked BP terms. No significant term is an explicit result, not missing data.',[run/'04_functional_context/community_go_summary.tsv',run/'04_functional_context/top3_BP.tsv'])
     weighted=pd.read_csv(run/'03_network_analysis/weighted_metrics.tsv',sep='\t');merged=nodes.merge(weighted[['WBGene','degree','strength','community','robust_hub']],on='WBGene',suffixes=('','_weighted'),validate='one_to_one')
     fig,(ax1,ax2)=plt.subplots(1,2,figsize=(width,3.2),layout='constrained')

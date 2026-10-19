@@ -16,6 +16,9 @@ def fingerprint(stage,cfg,identity,upstream,root):
     if stage=='01':paths=[cfg['biogrid'][x]['path'] for x in ('tab3','gene_info')]
     if stage=='04':paths=[cfg['go'][x]['path'] for x in ('gaf','obo')]
     if stage=='05':paths=[cfg['bgee']['source']['path'],cfg['blast']['target_gzip']]
+    if stage=='05' and cfg['wormbase'].get('snapshot'):
+        spec=cfg['wormbase']['snapshot']
+        paths += [str(Path(spec['directory'])/name) for name in sorted(spec['files'])]
     sources={p:sha256(root/p) if (root/p).exists() else 'missing' for p in paths}
     packages={p:importlib.metadata.version(p) for p in ['networkx','numpy','scipy','pandas','python-louvain']}
     content={'stage':stage,'method_version':'2.0.0','identity':identity,'parameters':selected,'sources':sources,

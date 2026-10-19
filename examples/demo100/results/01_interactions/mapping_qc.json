@@ -1,0 +1,78 @@
+{
+  "valid_rows": 100,
+  "unique_WBGene": 76,
+  "unique_UniProt": 100,
+  "unique_pairs": 100,
+  "duplicate_pair_extra_rows": 0,
+  "one_gene_multiple_accessions": {
+    "WBGene00017597": [
+      "Q8MQ71",
+      "U4PAY0",
+      "U4PBC2",
+      "U4PLS7"
+    ],
+    "WBGene00016639": [
+      "A0A0S4XRS1",
+      "U4PBZ7",
+      "U4PCC9"
+    ],
+    "WBGene00014207": [
+      "C9IY21",
+      "C9IY22"
+    ],
+    "WBGene00044019": [
+      "N1NVC0",
+      "Q5FC47"
+    ],
+    "WBGene00011028": [
+      "J7S160",
+      "J7SA63",
+      "J7SEZ9"
+    ],
+    "WBGene00013902": [
+      "B2D6M8",
+      "G3MU23",
+      "G5EEA0"
+    ],
+    "WBGene00007592": [
+      "A0A4V0IJY6",
+      "G5EDI1",
+      "Q0G832"
+    ],
+    "WBGene00007492": [
+      "L8E712",
+      "Q17871"
+    ],
+    "WBGene00018405": [
+      "H2L032",
+      "Q8MQ52"
+    ],
+    "WBGene00009371": [
+      "B3WFX7",
+      "O62221"
+    ],
+    "WBGene00020294": [
+      "A0A5E4LZJ1",
+      "A0A5E4M3H3"
+    ],
+    "WBGene00012274": [
+      "F5GUG6",
+      "F5GUG7",
+      "F5GUG9",
+      "F5GUH0",
+      "F5GUH1"
+    ],
+    "WBGene00021561": [
+      "A0A168HBA5",
+      "H2L0Q4",
+      "Q9GUI5"
+    ],
+    "WBGene00010385": [
+      "A0A486WWW4",
+      "Q9XTW6"
+    ]
+  },
+  "one_accession_multiple_genes": {},
+  "orthogroups": null,
+  "orthogroup_status": "available"
+}

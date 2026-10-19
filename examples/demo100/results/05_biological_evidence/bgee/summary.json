@@ -1,0 +1,7 @@
+{
+  "hub_count": 13,
+  "hubs_with_records": 13,
+  "detail_rows": 582,
+  "source_version": "15.2 (current download SHA256 equals pinned 15.2)",
+  "interpretation": "Condition counts include ontology-propagated calls; not independent experiments or high-expression classifications"
+}

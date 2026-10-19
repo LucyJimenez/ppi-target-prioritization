@@ -1,0 +1,8 @@
+{
+  "full_nodes": 344,
+  "full_edges": 331,
+  "lcc_nodes": 249,
+  "lcc_edges": 287,
+  "components": 52,
+  "isolates": 30
+}

@@ -1,0 +1,14 @@
+WBGene	blast_query_status	blast_query_sequences	blast_hits	blast_human_proteins	blast_interpretation	blast_retrieval	best_human_UniProt	best_human_gene	best_evalue	best_bit_score	best_percent_identity	best_alignment_length	best_query_coverage	best_subject_coverage	Orthogroup	UniProt
+WBGene00006827	queries_available	1	1458	1458	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast	Q96N38-3	ZNF714	4.08e-16	80.5	31.176	170.0	53.54838709677419	90.0	OG0005512	Q19203
+WBGene00009739	queries_available	1	2	2	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast	O14949	UQCRQ	3.81e-12	58.5	32.53	83.0	92.22222222222223	100.0	OG0005773	O45525
+WBGene00014086	queries_available	1	0	0	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast									OG0004167	Q23597
+WBGene00000220	queries_available	1	3	3	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast	Q10586	DBP	3.71e-06	50.8	40.625	64.0	15.960099750623442	19.692307692307693	OG0003788	Q21361
+WBGene00019510	queries_available	1	0	0	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast									OG0005075	O45181
+WBGene00017597	queries_available	4	0	0	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast									OG0004600	Q8MQ71;U4PAY0;U4PBC2;U4PLS7
+WBGene00001569	queries_available	1	0	0	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast										Q9TXM1
+WBGene00006824	queries_available	1	38	38	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast	A0ACI8VKP7	PXN	2.26e-11	67.8	43.75	64.0	18.285714285714285	4.88013698630137	OG0005239	Q9NEZ5
+WBGene00018221	queries_available	1	0	0	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast									OG0005825	O16266
+WBGene00007934	queries_available	1	0	0	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast									OG0004924	G5ECE7
+WBGene00011747	queries_available	1	0	0	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast									OG0004903	Q94050
+WBGene00013902	queries_available	5	0	0	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast									OG0005154	B2D6M8;G3MU23;G5EEA0
+WBGene00018330	queries_available	1	21	21	sequence similarity; not orthology	results/runs/20261019T132633Z-c74aee17/05_biological_evidence/blast	A0ACI8UPM9	ERC1	1.87e-40	163.0	26.788	713.0	75.11961722488039	69.70317297850563		O44490

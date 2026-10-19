@@ -1,0 +1,14 @@
+WBGene	UniProt	Orthogroup	Gene_symbol	community	degree	hub_frequency	wormbase_url
+WBGene00006827	Q19203	OG0005512	unc-98	2	59	1.0	https://wormbase.org/species/c_elegans/gene/WBGene00006827
+WBGene00009739	O45525	OG0005773	F45H10.2	1	52	1.0	https://wormbase.org/species/c_elegans/gene/WBGene00009739
+WBGene00014086	Q23597	OG0004167	ZK809.3	1	36	1.0	https://wormbase.org/species/c_elegans/gene/WBGene00014086
+WBGene00000220	Q21361	OG0003788	atf-2	4	26	1.0	https://wormbase.org/species/c_elegans/gene/WBGene00000220
+WBGene00019510	O45181	OG0005075	K07H8.10	3	22	1.0	https://wormbase.org/species/c_elegans/gene/WBGene00019510
+WBGene00017597	H2KZT5;Q8MQ71;U4PAY0;U4PBC2;U4PLS7	OG0004600	F19C7.8	5	11	1.0	https://wormbase.org/species/c_elegans/gene/WBGene00017597
+WBGene00001569	Q9TXM1		meg-3	3	10	1.0	https://wormbase.org/species/c_elegans/gene/WBGene00001569
+WBGene00006824	Q9NEZ5	OG0005239	unc-95	7	10	1.0	https://wormbase.org/species/c_elegans/gene/WBGene00006824
+WBGene00018221	O16266	OG0005825	F40A3.6	6	9	1.0	https://wormbase.org/species/c_elegans/gene/WBGene00018221
+WBGene00007934	G5ECE7	OG0004924	C34E7.4	6	8	0.99	https://wormbase.org/species/c_elegans/gene/WBGene00007934
+WBGene00011747	Q94050	OG0004903	sna-2	3	8	0.96	https://wormbase.org/species/c_elegans/gene/WBGene00011747
+WBGene00013902	B2D6M8;G3MU23;G5EEA0;G5EEL6;G5EGE1;G5EGE4	OG0005154	CELE_ZC455.1	5	8	0.98	https://wormbase.org/species/c_elegans/gene/WBGene00013902
+WBGene00018330	O44490		elks-1	6	8	0.98	https://wormbase.org/species/c_elegans/gene/WBGene00018330

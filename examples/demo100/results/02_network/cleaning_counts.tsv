@@ -1,0 +1,5 @@
+step	records	nodes	edges
+resolved_evidence	361	344	
+self_records_removed	359	344	
+unique_pairs	359	344	331
+LCC		249	287
