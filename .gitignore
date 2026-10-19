@@ -1,0 +1,32 @@
+# Local study data, snapshots and all analysis products stay private/local.
+/data/raw/
+/data/processed/
+/data/external/
+/results/
+/logs/
+/planning/
+/local/
+/config/config.yaml
+/config/*.local.yaml
+/IMPLEMENTATION_PLAN.md
+/PARAMETER_TABLE.tsv
+/PHASE1_CORRECTIONS.md
+/STATUS.md
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+*.egg-info/
+build/
+dist/
+.env
+.env.*
+*.pem
+*.key
+/config/*.local.json
+
+# Quarantined local files awaiting owner review; never publish.
+/_review_before_delete/
