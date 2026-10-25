@@ -1,32 +1,15 @@
-# Local study data, snapshots and all analysis products stay private/local.
-/data/raw/
-/data/processed/
-/data/external/
-/results/
-/logs/
-/planning/
-/local/
-/config/config.yaml
-/config/*.local.yaml
-/IMPLEMENTATION_PLAN.md
-/PARAMETER_TABLE.tsv
-/PHASE1_CORRECTIONS.md
-/STATUS.md
-.venv/
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.coverage
-htmlcov/
-.DS_Store
-*.egg-info/
-build/
-dist/
-.env
-.env.*
-*.pem
-*.key
-/config/*.local.json
-
-# Quarantined local files awaiting owner review; never publish.
-/_review_before_delete/
+# Only the protocol and code belong in Git. All local data/results stay local.
+/*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/requirements.txt
+!/parameters.yaml
+!/pipeline.py
+!/common.py
+!/01_interactions.py
+!/02_network.py
+!/03_topology.py
+!/04_go.py
+!/05_evidence.py
+!/06_results.py

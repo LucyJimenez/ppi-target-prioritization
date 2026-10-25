@@ -1,9 +1,0 @@
-cff-version: 1.2.0
-message: "Please cite the software version and commit, and cite all biological resources separately."
-title: "Protein–Protein Interaction Network Analysis for Antiparasitic Target Prioritization"
-type: software
-version: 0.3.0
-license: MIT
-authors:
-  - name: "PPI Target Prioritization contributors"
-abstract: "A modular workflow for physical PPI analysis and traceable candidate target profiles."
