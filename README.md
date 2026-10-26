@@ -21,12 +21,12 @@ Install NCBI BLAST+ separately and make sure `blastp` and `makeblastdb` are on y
 Create a tab-separated file called `input.tsv` with these headers:
 
 ```tsv
-WBGene	UniProt
-WBGene00014086	Q23597
-WBGene00011831	Q22562
+WBGene	UniProt	Orthogroup
+WBGene00014086	Q23597	OG0004167
+WBGene00011831	Q22562	OG0004728
 ```
 
-These two rows illustrate the input format, not a sufficient analysis dataset. You may add an `Orthogroup` column. Multiple accessions for one WBGene are preserved, but the network has one node per gene. All counts are calculated from your file.
+These two rows illustrate the input format, not a sufficient analysis dataset. `WBGene` and `UniProt` are required; `Orthogroup` is optional and may be omitted or left empty. Multiple accessions for one WBGene are preserved, but the network has one node per gene. All counts are calculated from your file.
 
 ## 3. Run the complete pipeline
 
@@ -68,7 +68,7 @@ A completed step is not overwritten. Choose a new `--out` directory for a new an
 
 Defaults are in the single `parameters.yaml` file. For another settings file, pass `--parameters my_parameters.yaml` when starting the run.
 
-- Physical interactions only; both interactor taxonomy IDs must be **6239**. The graph includes edges incident to at least one input gene, including external partners; it is not the complete organism interactome.
+- Physical interactions only; both interactor taxonomy IDs must be **6239 (Caenorhabditis elegans)**. The graph includes edges incident to at least one input gene, including external partners; it is not the complete organism interactome.
 - Primary analysis is unweighted. Publication-weighted sensitivity uses the same graph and LCC.
 - Louvain: resolution 1, 100 seeds; consensus threshold 0.5. Hubs: degree ≥95th percentile; retained as robust when present in ≥90% of 100 edge-retention replicates (90% of edges retained).
 - GO: direct positive annotations, all LCC genes as background, one-sided Fisher tests, BH correction within each community; FDR <0.05. Complete results are retained.
@@ -77,10 +77,12 @@ Defaults are in the single `parameters.yaml` file. For another settings file, pa
 
 Database versions and dates come from each run's retrieval records. New releases can change results. Candidate profiles are not validated therapeutic targets or a druggability score.
 
-## Historical example: local exception only
+## Worked example: from input genes to results
 
-A demonstration was previously run with **100 records sampled from 165 historical inputs**, corresponding to 76 unique WBGene IDs. Its WormBase evidence used the **5 August 2026 snapshot**; a numbered WormBase release was not established. The example dataset is only a sample of data planned for full publication later.
+A demonstration was previously run with **100 records sampled from 165 historical inputs**, corresponding to 76 unique WBGene IDs. Its WormBase evidence used the **5 August 2026 snapshot**. The example dataset is only a sample of data planned for full publication later.
 
-The default scripts do **not** use that snapshot. An explicit `--example-config /path/to/frozen-example.local.json` option exists only to validate a locally available frozen example. It requires local pinned resources and checksum-verified evidence matching the recalculated hubs; it never silently substitutes live data. The example files and generated reports are kept locally, not bundled in this streamlined branch.
+[Download the example HTML report](https://github.com/LucyJimenez/ppi-target-prioritization/raw/refs/heads/main/example_report.html) and open it in your browser to explore the network, communities, GO enrichment and integrated hub evidence. The figures are embedded, so the report works offline. GitHub displays HTML source rather than rendering the report.
 
-This GitHub version contains the protocol and runnable scripts only. The previous expanded demonstration remains identifiable in release history; the current branch is the simplified workflow.
+The default scripts do **not** use that snapshot. An explicit `--example-config /path/to/frozen-example.local.json` option exists only to validate a locally available frozen example. It requires local pinned resources and checksum-verified evidence matching the recalculated hubs; it never silently substitutes live data. Only the self-contained example HTML is included here; the complete example files and study results remain local.
+
+This GitHub version contains the protocol, runnable scripts and one example HTML report. The previous expanded demonstration remains identifiable in release history; the current branch is the simplified workflow.

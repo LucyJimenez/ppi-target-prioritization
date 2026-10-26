@@ -1,4 +1,4 @@
-# Only the protocol and code belong in Git. All local data/results stay local.
+# Protocol, code and the explicitly authorized example HTML only. Study data/results stay local.
 /*
 !/.gitignore
 !/README.md
@@ -13,3 +13,4 @@
 !/04_go.py
 !/05_evidence.py
 !/06_results.py
+!/example_report.html
