@@ -1,6 +1,10 @@
-# C. elegans physical PPI pipeline
+# Protein–Protein Interaction Network Analysis for Antiparasitic Target Prioritization
 
-A step-by-step protocol: **input genes → physical interactions → network → communities and hubs → GO → biological evidence → tables and figures**.
+A reproducible protocol for investigating *Caenorhabditis elegans* physical protein–protein interaction networks and assembling evidence-based candidate target profiles for antiparasitic research. It connects network topology and robustness with community-level functional enrichment, phenotype evidence, expression context and human protein sequence similarity.
+
+**[View the example report online](https://LucyJimenez.github.io/ppi-target-prioritization/)** — explore the network, communities, GO results and integrated evidence without downloading files.
+
+The scientific workflow is: **input genes → physical interactions → network → communities and robust hubs → GO → biological evidence → integrated profiles, tables and figures**. GO characterizes the LCC and its communities; WormBase, Bgee and human sequence comparisons characterize the robust hubs. These complementary evidence layers support prioritization, without implying experimentally validated targets, essentiality, druggability or therapeutic efficacy.
 
 Each numbered Python file contains the analysis for that step. `pipeline.py` runs the steps in order; `common.py` provides shared downloads, identifier checks and file handling. There is no package tree to navigate, no screenshots to interpret and no pre-downloaded study documents required.
 
@@ -81,7 +85,7 @@ Database versions and dates come from each run's retrieval records. New releases
 
 A demonstration was previously run with **100 records sampled from 165 historical inputs**, corresponding to 76 unique WBGene IDs. Its WormBase evidence used the **5 August 2026 snapshot**. The example dataset is only a sample of data planned for full publication later.
 
-[Download the example HTML report](https://github.com/LucyJimenez/ppi-target-prioritization/raw/refs/heads/main/example_report.html) and open it in your browser to explore the network, communities, GO enrichment and integrated hub evidence. The figures are embedded, so the report works offline. GitHub displays HTML source rather than rendering the report.
+[View the example report online with GitHub Pages](https://LucyJimenez.github.io/ppi-target-prioritization/) to explore the network, communities, GO enrichment and integrated hub evidence. No download is required. You can also [download the self-contained HTML](https://github.com/LucyJimenez/ppi-target-prioritization/raw/refs/heads/main/example_report.html) for offline use. GitHub Pages publishes only this demonstration report from the separate `gh-pages` branch; the pipeline and study results are not executed or uploaded by the site.
 
 The default scripts do **not** use that snapshot. An explicit `--example-config /path/to/frozen-example.local.json` option exists only to validate a locally available frozen example. It requires local pinned resources and checksum-verified evidence matching the recalculated hubs; it never silently substitutes live data. Only the self-contained example HTML is included here; the complete example files and study results remain local.
 
