@@ -170,16 +170,78 @@ def execute(root, config, run, manifest):
     return summary
 
 def write_report(root, config, run, out, summary, profiles):
-    """Render actual saved results, never hard-coded database dates or study conclusions."""
+    """Readable overview and compact candidate rows with complete accessible details."""
     import base64, html
-    blocks = ['<!doctype html><html lang="en"><meta charset="utf-8"><title>PPI results</title>', '<style>body{font:16px Arial;max-width:1100px;margin:40px auto;padding:20px}img{max-width:100%}table{border-collapse:collapse}td,th{padding:8px;border:1px solid #ddd}.table{overflow:auto}</style>', '<h1>Physical PPI pipeline results</h1>', '<p>Network nodes are WBGene IDs. Missing evidence is not negative evidence; sequence similarity does not establish orthology or druggability.</p>']
-    blocks.append('<h2>Evidence source status</h2>' + pd.DataFrame(summary['evidence']).to_html(index=False, escape=True))
-    blocks.append('<h2>Network and GO summary</h2><pre>' + html.escape(json.dumps({'network': summary['network'], 'GO': summary['GO']}, indent=2)) + '</pre>')
-    for name in ['figure_A_network', 'figure_B_community_GO', 'figure_C_sensitivity']:
-        image = base64.b64encode((out / 'figures' / (name + '.svg')).read_bytes()).decode()
-        blocks.append('<img alt="' + name + '" src="data:image/svg+xml;base64,' + image + '">')
-    blocks.append('<h2>Candidate profiles</h2><div class="table">' + profiles.to_html(index=False, escape=True, na_rep='NA') + '</div></html>')
-    (out / 'analysis_report.html').write_text('\n'.join(blocks))
+    def esc(value):
+        return html.escape(str(value), quote=True)
+    def value(x):
+        if x is None or pd.isna(x) or str(x) in ('', 'NA', 'nan'):
+            return 'Not available'
+        if isinstance(x, (float, np.floating)):
+            return f'{x:.4g}'
+        return str(x)
+    def number(x):
+        return f'{int(x):,}' if x is not None else 'Not available'
+    def simple_table(headers, rows):
+        return '<div class="scroll"><table><thead><tr>'+''.join('<th scope="col">'+esc(h)+'</th>' for h in headers)+'</tr></thead><tbody>'+''.join('<tr>'+''.join('<td>'+esc(value(x))+'</td>' for x in row)+'</tr>' for row in rows)+'</tbody></table></div>'
+    n=summary['network'];g=summary['GO'];primary=n['primary'];weighted=n['weighted']
+    styles='''
+    :root{color-scheme:light;--ink:#193344;--muted:#536a79;--line:#dce6eb;--accent:#087d81}*{box-sizing:border-box}
+    body{font:16px/1.55 system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:#f3f7f8;margin:0}
+    main{max-width:1240px;margin:auto;padding:36px 24px 70px}h1{font-size:clamp(27px,4vw,40px);line-height:1.2}h2{font-size:25px;margin:0 0 14px}h3{font-size:18px}
+    section{background:white;border:1px solid var(--line);border-radius:12px;padding:26px;margin:26px 0;scroll-margin-top:20px}
+    p{max-width:980px}a{color:#006b73}nav{display:flex;gap:18px;flex-wrap:wrap;margin:24px 0}.muted{color:var(--muted);font-size:14px}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{padding:18px;background:#edf6f6;border-radius:8px}.card strong{display:block;font-size:32px}.card span{font-size:14px}
+    .panels{display:grid;grid-template-columns:1fr 1fr;gap:24px}.scroll{overflow:auto;max-width:100%}table{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;text-align:left}
+    th{background:#edf3f5;color:#354e5e;font-weight:600}th,td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}tbody tr:nth-child(even){background:#f8fafb}
+    .profiles{min-width:1080px;table-layout:fixed}.profiles tbody tr{height:64px}.profiles td{height:64px;padding:8px 12px}.profiles th{position:sticky;top:0;z-index:1}
+    .profiles th:first-child,.profiles td:first-child{position:sticky;left:0;background:#f0f6f7;z-index:2}.profiles th:first-child{z-index:3}
+    .profiles-scroll{max-height:620px;border:1px solid var(--line);border-radius:8px}.gene{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:650}.id{display:block;font-size:12px;color:var(--muted);white-space:nowrap}
+    button,.download{display:inline-block;font:inherit;font-size:14px;border:1px solid #7ca5ad;border-radius:6px;background:white;color:#005c66;padding:7px 12px;cursor:pointer;text-decoration:none}button:hover,.download:hover{background:#e5f2f3}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #e6a12c;outline-offset:3px}
+    .toolbar{display:flex;gap:16px;align-items:end;justify-content:space-between;flex-wrap:wrap;margin:18px 0}.toolbar label{display:block;font-size:14px;font-weight:600}input{display:block;width:min(360px,75vw);font:inherit;padding:10px 12px;border:1px solid #9aafb9;border-radius:6px;margin-top:5px}
+    dialog{border:1px solid var(--line);border-radius:12px;max-width:850px;width:calc(100% - 32px);max-height:85vh;padding:0;color:var(--ink)}dialog::backdrop{background:#142c40aa}.dialog-head{position:sticky;top:0;background:white;padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:center}.dialog-head h3{margin:0}.detail-body{padding:12px 24px 24px}dl{display:grid;grid-template-columns:minmax(140px,35%) 1fr;gap:0;margin:0}dt,dd{padding:10px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}dt{color:var(--muted);padding-right:18px}dd{margin:0}
+    details{margin-top:20px}summary{cursor:pointer;color:#006b73;font-weight:600}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f7f8;padding:16px;font-size:12px}figure{margin:22px 0}img{max-width:100%;height:auto}figcaption{font-size:14px;color:var(--muted)}.empty{padding:20px}.pill{font-size:12px;display:inline-block;border-radius:12px;padding:3px 8px;background:#e6f2eb}
+    @media(max-width:760px){main{padding:20px 12px}section{padding:18px}.cards{grid-template-columns:repeat(2,1fr)}.panels{grid-template-columns:1fr}dl{grid-template-columns:1fr}dt{border:0;padding-bottom:0}dd{padding-top:2px}}
+    @media print{body{background:white}main{max-width:none}.profiles-scroll{max-height:none}.toolbar,button{display:none}section{break-inside:avoid}details{display:none}}
+    '''
+    blocks=['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PPI results</title><style>'+styles+'</style></head><body><main>',
+        '<h1>Physical PPI pipeline results</h1><p>Network nodes are WBGene IDs. Missing evidence is not negative evidence; sequence similarity does not establish orthology or druggability.</p>',
+        '<nav aria-label="Report sections"><a href="#overview">Network &amp; GO</a><a href="#figures">Figures</a><a href="#candidates">Candidate profiles</a><a href="#sources">Evidence sources</a></nav>',
+        '<section id="overview"><h2>Network and GO summary</h2><p class="muted">The largest connected component (LCC) is the connected part of the network used for community and hub analysis.</p><div class="cards">']
+    for label,count in [('LCC genes',n['lcc_nodes']),('Physical interactions',n['lcc_edges']),('Communities',primary['communities']),('Robust hubs',primary['robust_hubs'])]:
+        blocks.append('<div class="card"><strong>'+number(count)+'</strong><span>'+label+'</span></div>')
+    blocks.append('</div><div class="panels"><div><h3>Network structure</h3>'+simple_table(['Measure','Result'],[
+        ('Full network genes',number(n['full_nodes'])),('Full network interactions',number(n['full_edges'])),('Input genes in the LCC',number(n['input_in_LCC'])),('Primary modularity',round(primary['modularity'],3)),('Weighted communities',weighted['communities']),('Hubs shared by both analyses',n.get('robust_hub_overlap'))])+'</div>')
+    blocks.append('<div><h3>GO functional context</h3>'+simple_table(['Measure','Result'],[
+        ('LCC genes with annotations',f"{g['mapped_background_genes']:,} / {g['background_genes']:,}"),('Significant community–BP associations',g['significant_BP']),('Communities with significant BP terms',g['communities_with_significant_BP']),('Tested GO terms per community',g['family_terms'])])+ '<p class="muted">BP = Biological Process. Associations count a term separately in each enriched community; they are not necessarily unique GO terms.</p></div></div>')
+    blocks.append('<details><summary>Show all network and GO statistics</summary><pre>'+esc(json.dumps({'network':n,'GO':g},indent=2))+'</pre></details></section>')
+    blocks.append('<section id="figures"><h2>Network, communities and sensitivity</h2>')
+    for name,caption in [('figure_A_network','Physical interaction network: colors identify communities; outlined nodes are robust hubs.'),('figure_B_community_GO','Community sizes and significant Biological Process enrichment.'),('figure_C_sensitivity','Comparison of the primary and publication-weighted analyses.')]:
+        image=base64.b64encode((out/'figures'/(name+'.svg')).read_bytes()).decode()
+        blocks.append('<figure><img alt="'+esc(caption)+'" src="data:image/svg+xml;base64,'+image+'"><figcaption>'+esc(caption)+'</figcaption></figure>')
+    blocks.append('</section><section id="candidates"><h2>Candidate profiles</h2><p>Compare the key measures below. Open <b>Details</b> for all identifiers, metrics and source evidence.</p><p class="muted">Phenotype counts are observed records, not an essentiality classification. Human hit counts describe sequence similarity.</p>')
+    csv64=base64.b64encode(profiles.to_csv(index=False).encode()).decode()
+    blocks.append('<div class="toolbar"><label for="candidate-search">Find a candidate<input id="candidate-search" type="search" placeholder="Gene, WBGene or UniProt"></label><a class="download" download="candidate_profiles.csv" href="data:text/csv;base64,'+csv64+'">Download complete table</a></div><p id="candidate-count" class="muted" aria-live="polite">'+str(len(profiles))+' candidates</p>')
+    blocks.append('<div class="scroll profiles-scroll" role="region" aria-label="Candidate profiles; scroll horizontally for more columns" tabindex="0"><table class="profiles"><colgroup><col style="width:210px">'+''.join('<col style="width:'+str(w)+'px">' for w in [95,85,105,130,130,115,100])+'</colgroup><thead><tr>'+''.join('<th scope="col">'+x+'</th>' for x in ['Gene / WBGene','Community','Degree','Hub stability','Observed phenotypes','Expression conditions','Human hits','Full profile'])+'</tr></thead><tbody>')
+    dialogs=[]
+    for i,row in enumerate(profiles.to_dict('records')):
+        gene=value(row.get('Gene_symbol'));gene=row['WBGene'] if gene=='Not available' else gene
+        search=' '.join(str(row.get(k,'')) for k in ['Gene_symbol','WBGene','UniProt','Orthogroup']).lower()
+        frequency=row.get('hub_frequency');stability='Not available' if frequency is None or pd.isna(frequency) else f'{float(frequency)*100:.0f}%'
+        blocks.append('<tr data-search="'+esc(search)+'"><td><span class="gene" title="'+esc(gene)+'">'+esc(gene)+'</span><span class="id">'+esc(row['WBGene'])+'</span></td>'+''.join('<td>'+esc(value(v))+'</td>' for v in [row.get('community'),row.get('degree'),stability,row.get('wormbase_observed_records'),row.get('bgee_conditions'),row.get('blast_hits')])+'<td><button type="button" data-open="candidate-'+str(i)+'" aria-label="View full profile for '+esc(gene)+'">Details</button></td></tr>')
+        dialogs.append('<dialog id="candidate-'+str(i)+'" aria-labelledby="candidate-title-'+str(i)+'"><div class="dialog-head"><h3 id="candidate-title-'+str(i)+'">'+esc(gene)+' · '+esc(row['WBGene'])+'</h3><form method="dialog"><button>Close</button></form></div><div class="detail-body"><dl>'+''.join('<dt>'+esc(k.replace('_',' ').capitalize())+'</dt><dd>'+esc(value(v))+'</dd>' for k,v in row.items())+'</dl></div></dialog>')
+    blocks.append('</tbody></table></div><p id="no-candidates" class="empty" hidden>No matching candidates. Try another identifier.</p></section>'+''.join(dialogs))
+    blocks.append('<section id="sources"><h2>Evidence source status</h2>'+simple_table(['Source','Status','Records','Retrieved'],[(e['source'],e['status'],e.get('records'),str(e.get('retrieved_at',''))[:10]) for e in summary['evidence']]))
+    for e in summary['evidence']:
+        if e.get('reason'):blocks.append('<p><b>'+esc(e['source'])+':</b> '+esc(e['reason'])+'</p>')
+    blocks.append('<details><summary>Source versions and retrieval details</summary>'+simple_table(['Source','Version','Retrieved'],[(e['source'],e.get('database_version'),e.get('retrieved_at')) for e in summary['evidence']])+'</details></section>')
+    blocks.append('''</main><script>
+    document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.open).showModal()));
+    const search=document.getElementById('candidate-search');
+    search.addEventListener('input',()=>{let count=0;document.querySelectorAll('tr[data-search]').forEach(r=>{r.hidden=!r.dataset.search.includes(search.value.trim().toLowerCase());if(!r.hidden)count++;});document.getElementById('candidate-count').textContent=count+' candidates shown';document.getElementById('no-candidates').hidden=count!==0;});
+    </script></body></html>''')
+    (out/'analysis_report.html').write_text('\n'.join(blocks))
+
 if __name__ == '__main__':
     from pipeline import main
     main(default_stage=6)
