@@ -83,7 +83,7 @@ Database versions and dates come from each run's retrieval records. New releases
 
 ## Worked example: from input genes to results
 
-A demonstration was previously run with **100 records sampled from 165 historical inputs**, corresponding to 76 unique WBGene IDs. Its WormBase evidence used the **5 August 2026 snapshot**. The example dataset is only a sample of data planned for full publication later.
+A demonstration was previously run with **100 records sampled from 165 historical inputs**, corresponding to 76 unique WBGene IDs. WormBase was unavailable at the time of the current query, so the example reused results from the previous query, preserved in the **5 August 2026 snapshot**. The example dataset is only a sample of data planned for full publication later.
 
 [View the example report online with GitHub Pages](https://LucyJimenez.github.io/ppi-target-prioritization/) to explore the network, communities, GO enrichment and integrated hub evidence. No download is required. You can also [download the self-contained HTML](https://github.com/LucyJimenez/ppi-target-prioritization/raw/refs/heads/main/example_report.html) for offline use. GitHub Pages publishes only this demonstration report from the separate `gh-pages` branch; the pipeline and study results are not executed or uploaded by the site.
 
